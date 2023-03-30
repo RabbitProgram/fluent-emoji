@@ -36,14 +36,17 @@ for style in style_list:
 skintone_list = emoji_json["Waving hand"]["skintones"]
 
 # 一括ダウンロード
-for emoji in emoji_json.values():
+emoji_json_value_list = emoji_json.values()
+count = 0
+for emoji in emoji_json_value_list:
+    url = ""
+    file_name = ""
+    path = ""
     if("styles" in list(emoji.keys())):
         for style in style_list:
             url = str(emoji["styles"][style]).replace(" ", "%20")
             file_name = url.split("/")[-1]
             path = os.path.join(save_dir_path, style, file_name)
-            download_file(url, path)
-            print("✅ ダウンロード完了: "+file_name)
     if("skintones" in list(emoji.keys())):
         for style in style_list:
             for skintone in skintone_list:
@@ -51,7 +54,10 @@ for emoji in emoji_json.values():
                           [style]).replace(" ", "%20")
                 file_name = url.split("/")[-1]
                 path = os.path.join(save_dir_path, style, file_name)
-                download_file(url, path)
-                print("✅ ダウンロード完了: "+file_name)
+    if(len(url) != 0 and len(path) != 0):
+        download_file(url, path)
+        print("✅ ダウンロード完了: "+file_name+" ("+str(count+1) +
+              "/"+str(len(emoji_json_value_list))+")")
+        count += 1
 
 print("✅ すべてのダウンロードが完了しました")
