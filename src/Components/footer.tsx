@@ -10,7 +10,7 @@ export default class Footer extends React.Component {
   render() {
     return (
       <div>
-        <Box component="footer" sx={{ py: 4 }}>
+        <Box component="footer" sx={{ marginX: 5 }}>
           <Stack spacing={4} direction="row" justifyContent="center">
             <Tooltip title="Contact Me">
               <Link

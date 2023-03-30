@@ -1,7 +1,9 @@
 import React from "react";
-import { Box, Container, Tab, Tabs } from "@mui/material";
+import { Box, Button, Container, Tab, Tabs } from "@mui/material";
 import { imageListItemClasses } from "@mui/material/ImageListItem";
 import Emoji from "./emoji";
+import { copyToClipboard } from "../Utils";
+import ContentCopyIcon from "@mui/icons-material/ContentCopy";
 const emojiMetadata: EmojiMetadata = require("./metadata.json");
 
 interface EmojiGridProps {}
@@ -47,8 +49,19 @@ export default class EmojiGrid extends React.Component<
   }
 
   render(): React.ReactNode {
+    console.log(
+      "this.state.currentEmoji:",
+      this.state.currentEmoji[this.state.currentEmoji.length - 1]
+    );
+    // copyToClipboard(JSON.stringify(this.state.currentEmoji));
+    console.log(
+      "emojiMetadata:",
+      Object.keys(emojiMetadata).length,
+      emojiMetadata
+    );
+
     return (
-      <div style={{ height: "calc(100vh - 200px)" }}>
+      <div>
         <Container maxWidth="sm">
           {/* Tabs */}
           <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
@@ -97,6 +110,22 @@ export default class EmojiGrid extends React.Component<
             </Box>
           </Box>
         </Container>
+
+        <center>
+          <Button
+            color="secondary"
+            variant="contained"
+            onClick={() => {
+              const jsonText = JSON.stringify(emojiMetadata);
+              copyToClipboard(jsonText);
+              alert(`コピーしました (${jsonText.length}文字)`);
+            }}
+            startIcon={<ContentCopyIcon />}
+            sx={{ marginY: 2 }}
+          >
+            絵文字データをJSONでコピー ({Object.keys(emojiMetadata).length}個)
+          </Button>
+        </center>
       </div>
     );
   }
