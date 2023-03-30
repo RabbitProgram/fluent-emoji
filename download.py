@@ -42,8 +42,6 @@ for emoji in emoji_json.values():
             url = str(emoji["styles"][style]).replace(" ", "%20")
             file_name = url.split("/")[-1]
             path = os.path.join(save_dir_path, style, file_name)
-            print(url)
-            print(path)
             download_file(url, path)
             print("✅ ダウンロード完了: "+file_name)
     if("skintones" in list(emoji.keys())):
