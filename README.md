@@ -21,8 +21,18 @@ npm start
 
 This will start the application on your local machine, running on [http://localhost:3000/](http://localhost:3000).
 
+## Batch Download Emoji Images
+
+```bash
+python "download.py"
+```
+
 ### Deployments
 
 All application deployments are managed via GitHub Actions and the [`./.github/workflows/deploy.yml`](./.github/workflows/deploy.yml) workflow.
 
 Additionally, application dependencies are automatically managed and updated via Dependabot and the [`./.github/workflows/automerge-dependabot.yml`](./.github/workflows/automerge-dependabot.yml) workflow.
+
+## 参考サイト
+
+- ファイルダウンロード：https://qiita.com/Kanahiro/items/dd585599f36a77540439
