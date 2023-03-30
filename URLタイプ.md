@@ -15,3 +15,8 @@ https://raw.githubusercontent.com/microsoft/fluentui-emoji/main/assets/Grinning 
 ## HighContrast
 
 https://raw.githubusercontent.com/microsoft/fluentui-emoji/main/assets/Grinning face/High Contrast/grinning_face_high_contrast.svg
+
+## 補足事項
+
+`https://raw.githubusercontent.com/microsoft/fluentui-emoji/main/assets/Pregnant%20person/Medium-Dark/3D/pregnant_person_3d_medium-dark.png`
+だけ自動でコピーされなかったため手動で追加
