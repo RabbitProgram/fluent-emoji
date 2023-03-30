@@ -4,6 +4,8 @@ import json
 
 PYTHON_DIR_PATH = os.path.dirname(os.path.abspath(__file__))  # pyファイルが置かれているパス
 
+error_url_list = []  # 失敗した絵文字画像のリスト
+
 
 # ファイルのダウンロード
 def download_file(url, path):
@@ -20,11 +22,16 @@ def make_dir(dir_name):
 
 
 def download(url, file_name, path):
-    if(len(url) == 0 or len(file_name) == 0 or len(path) == 0):
-        return
-    download_file(url, path)
-    print("✅ ダウンロード完了: "+file_name+" ("+str(count+1) +
-          "/"+str(len(emoji_json_value_list))+")")
+    try:
+        if(len(url) == 0 or len(file_name) == 0 or len(path) == 0):
+            return
+        download_file(url, path)
+        print("✅ ダウンロード完了: "+file_name+" ("+str(count+1) +
+              "/"+str(len(emoji_json_value_list))+")")
+    except:
+        error_url_list.append(url)
+        print("❌ ダウンロード失敗: "+file_name+" ("+str(count+1) +
+              "/"+str(len(emoji_json_value_list))+")")
 
 
 # emoji.jsonを読み込む
@@ -67,3 +74,4 @@ for emoji in emoji_json_value_list:
     count += 1
 
 print("✅ すべてのダウンロードが完了しました")
+print("ダウンロードに失敗したURL一覧:", error_url_list)
