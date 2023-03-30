@@ -19,6 +19,14 @@ def make_dir(dir_name):
         os.mkdir(dir_path)
 
 
+def download(url, file_name, path):
+    if(len(url) == 0 or len(file_name) == 0 or len(path) == 0):
+        return
+    download_file(url, path)
+    print("✅ ダウンロード完了: "+file_name+" ("+str(count+1) +
+          "/"+str(len(emoji_json_value_list))+")")
+
+
 # emoji.jsonを読み込む
 emoji_json_path = os.path.join(PYTHON_DIR_PATH, "emoji.json")
 with open(emoji_json_path, "r", encoding="utf-8") as f:
@@ -47,6 +55,7 @@ for emoji in emoji_json_value_list:
             url = str(emoji["styles"][style]).replace(" ", "%20")
             file_name = url.split("/")[-1]
             path = os.path.join(save_dir_path, style, file_name)
+            download(url, file_name, path)
     if("skintones" in list(emoji.keys())):
         for style in style_list:
             for skintone in skintone_list:
@@ -54,10 +63,7 @@ for emoji in emoji_json_value_list:
                           [style]).replace(" ", "%20")
                 file_name = url.split("/")[-1]
                 path = os.path.join(save_dir_path, style, file_name)
-    if(len(url) != 0 and len(path) != 0):
-        download_file(url, path)
-        print("✅ ダウンロード完了: "+file_name+" ("+str(count+1) +
-              "/"+str(len(emoji_json_value_list))+")")
-        count += 1
+                download(url, file_name, path)
+    count += 1
 
 print("✅ すべてのダウンロードが完了しました")
